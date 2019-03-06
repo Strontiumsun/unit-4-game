@@ -6,24 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <h1>Crystal Clicker Game</h1>
-    <h2>Click the crystals to play! Try to match the number.</h2>
-    <div id="guess-number">Match this number: <span id="number-to-guess"></span></div>
-    <div id="your-total">Your total score is: <span id="current-points"></span></div>
+    <div class="rules-container">
+        <h2>Click the crystals to play! Try to match the number.</h2>
+    </div>
+    <div class="numbers-container">
+        <div id="guess-number">Match this number: <span id="number-to-guess"></span></div>
+        <div id="your-total">Your total score is: <span id="current-points"></span></div>
+    </div>
     <div id="wins-here">Wins: <span id="wins"></span></div>
     <div id="losses-here">Loses: <span id="losses"></span></div>
     <div id="crystals"></div>
-
-
-
-
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

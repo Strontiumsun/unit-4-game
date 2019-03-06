@@ -1,3 +1,26 @@
+body{
+    background-image: url("assets/images/food.png");
+    font-family: Arial, Helvetica, sans-serif;
+    color: #24302c;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+}
+h1 {
+    font-size: 34px;
+    color: darkmagenta; 
+    text-align: center;
+}
+.rules-container{
+    margin: 0 auto;
+    width: 960px;
+    text-align: center;
+    background-color: white;
+}
+.numbers-container{
+    margin: 0 auto;
+    width: 500px;
+    background-color: white;
+}
 .crystal-image {
     width: 200px;
     height: 200px;
