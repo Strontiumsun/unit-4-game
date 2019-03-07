@@ -5,27 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <title>Crystal Clicker</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Sniglet" rel="stylesheet">
 </head>
 
 <body>
     <h1>Crystal Clicker Game</h1>
-    <div class="rules-container">
+    <div class="main-container">
         <h2>Click the crystals to play! Try to match the number.</h2>
+        <br>
+        <div class="scorekeeper" id="guess-number">Match this number: <span id="number-to-guess"></span></div>
+        <br>
+        <div class="scorekeeper" id="your-total">Your total score is: <span id="current-points"></span></div>
+        <br>
+        <div class="scorekeeper" id="wins-here">Wins: <span id="wins"></span></div>
+        <br>
+        <div class="scorekeeper" id="losses-here">Loses: <span id="losses"></span></div>
     </div>
-    <div class="numbers-container">
-        <div id="guess-number">Match this number: <span id="number-to-guess"></span></div>
-        <div id="your-total">Your total score is: <span id="current-points"></span></div>
+    <div id="crystal-container">
+        <div id="crystals"></div>
     </div>
-    <div id="wins-here">Wins: <span id="wins"></span></div>
-    <div id="losses-here">Loses: <span id="losses"></span></div>
-    <div id="crystals"></div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/game-old.js"></script> -->
 </body>
 
 </html>

@@ -3,12 +3,23 @@ $(document).ready(function () {
     // creating variables
 
     var targetNumber = Math.floor((Math.random() * 120) + 19);
-    var counter = 0;
+    var counter;
     var imageCrystal;
+    var game = false;
+    var winsCounter = $("#wins");
+    var wins = 0;
+    var lossesCounter = $("#losses");
+    var losses = 0;
     var crystalValues = [];
+    var crystalImages = ["https://slightlyburntout.com/wp-content/uploads/2015/01/Amethyst-Cluster-05_04_1_1.jpeg", "https://www.thespruce.com/thmb/UAp5ff80ZI_hscqq-3DA7ofJl40=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/Siede-Preis-g-crystalcluster-56a2e2335f9b58b7d0cf8077.jpg", "https://www.minerals.net/GemStoneInTheRoughImages/smoky-quartz-uri-switzerland.jpg", "https://images-na.ssl-images-amazon.com/images/I/81eDsKD8ApL._SX425_.jpg"];
+
 
     // this displays the target number in the correct place
-    $("#number-to-guess").html(targetNumber);
+    function displayTarget() {
+        $("#number-to-guess").html(targetNumber);
+        $("#number-to-guess").attr("value", targetNumber);
+    }
+    console.log(targetNumber);
 
     // https://stackoverflow.com/questions/18806210/generating-non-repeating-random-numbers-in-js
     // this function generates 4 random numbers and assigns them to the crystalValues array
@@ -21,13 +32,10 @@ $(document).ready(function () {
         }
         crystalNumberGenerator(arr);
     };
-    // this calls the function
-    crystalNumberGenerator(crystalValues);
-    // console.log test = success 
-    console.log(crystalValues);
 
-    // this function should create 4 crystals and assign each a number
-    // right now, it makes 1 crystal
+    // I modified this function from one of our in-class activities
+    // this function creates 4 crystals and assigns each an image.
+    // although I added the image files to my folder, I couldn't get them to work properly, so I used URLs instead.
     function createCrystals() {
 
         for (var i = 0; i < crystalValues.length; i++) {
@@ -35,7 +43,7 @@ $(document).ready(function () {
 
             imageCrystal.addClass("crystal-image");
 
-            imageCrystal.attr("src", "assets/images/crystal_placeholder.jpg");
+            imageCrystal.attr("src", crystalImages[i]);
 
             imageCrystal.attr("data-crystalvalue", crystalValues[i]);
 
@@ -43,25 +51,66 @@ $(document).ready(function () {
 
         }
     };
-    createCrystals();
+
+
+    function clearArray() {
+        crystalValues.length = 0;
+        function crystalNumberGenerator(arr) {
+            if (arr.length >= 4) return;
+            var crystalRan = Math.floor((Math.random() * 12) + 1);
+            if (arr.indexOf(crystalRan) < 0) {
+                arr.push(crystalRan);
+                console.log(crystalRan);
+            }
+            crystalNumberGenerator(arr);
+        };
+        crystalNumberGenerator(crystalValues);
+    }
+
+
+    // this is the whole game
+    function crystalGame() {
+        counter = 0;
+        displayTarget(targetNumber);
+        clearArray();
+        crystalNumberGenerator(crystalValues);
+        $("#crystals").html("");
+
+        createCrystals();
+        console.log(crystalValues);
+    }
+    crystalGame();
+
 
     // this onclick function will reference the value of the crystal, and display it on screen in the right place
     // multiple clicks will continue to add the value correctly 
+
+    //if you win, the game will restart
+    // however, I was not able to get the clicking function to work again. I don't know why really.
+    // if I could somehow remove or turn off the crystal-image class, I know I could get it clicking again. But I don't know how. The commented out lines were my idea at a solution 
     $(".crystal-image").on("click", function () {
+        // var tryIt = ($(this).attr("class", "crystal-image"));
         var uniValues = ($(this).attr("data-crystalvalue"));
         uniValues = parseInt(uniValues);
         counter += uniValues;
         $("#current-points").html(counter);
 
-        // here I'm putting in how the example game was won. I know ours needs to be be different; I just wanted to test if it works at all
-        alert("New score: " + counter);
-
         if (counter === targetNumber) {
             alert("You win!");
+            wins++;
+            winsCounter.text(wins);
+            // tryIt.classList.toggle("crystal-image");
+            crystalGame();
+            $("#current-points").html(counter);
         }
-
         else if (counter >= targetNumber) {
             alert("You lose!!");
+            losses++;
+            lossesCounter.text(losses);
+            // tryIt.classList.toggle("crystal-image");
+            crystalGame();
+            $("#current-points").html(counter);
+
         }
     })
 
