@@ -87,9 +87,8 @@ $(document).ready(function () {
 
     //if you win, the game will restart
     // however, I was not able to get the clicking function to work again. I don't know why really.
-    // if I could somehow remove or turn off the crystal-image class, I know I could get it clicking again. But I don't know how. The commented out lines were my idea at a solution 
-    $(".crystal-image").on("click", function () {
-        // var tryIt = ($(this).attr("class", "crystal-image"));
+    // (after due) classmate Ifran gave me the solution - change the listener to document, rather than the class. Now it works great! 
+    $(document).on("click", ".crystal-image", function () {
         var uniValues = ($(this).attr("data-crystalvalue"));
         uniValues = parseInt(uniValues);
         counter += uniValues;
@@ -99,7 +98,6 @@ $(document).ready(function () {
             alert("You win!");
             wins++;
             winsCounter.text(wins);
-            // tryIt.classList.toggle("crystal-image");
             crystalGame();
             $("#current-points").html(counter);
         }
@@ -107,7 +105,6 @@ $(document).ready(function () {
             alert("You lose!!");
             losses++;
             lossesCounter.text(losses);
-            // tryIt.classList.toggle("crystal-image");
             crystalGame();
             $("#current-points").html(counter);
 
